@@ -113,7 +113,7 @@ public class ReporteAController {
         ObservableList<Transaccion> transaccionesData = FXCollections.observableArrayList(transacciones);
         TablaConsultaA.setItems(transaccionesData);
 
-        
+
         guardarInformeEnArchivo(transacciones);
     }
 
