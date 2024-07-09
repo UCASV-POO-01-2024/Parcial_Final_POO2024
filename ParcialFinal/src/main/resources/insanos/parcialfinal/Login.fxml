@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane fx:id="gridPane" xmlns:fx="http://javafx.com/fxml" fx:controller="insanos.parcialfinal.LoginController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <hgap>10</hgap>
+    <vgap>10</vgap>
+
+    <Label text="Usuario:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <TextField fx:id="campoDeNombre" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+    <Label text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <PasswordField fx:id="campoDeContraseña" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <Button text="Iniciar Sesión" onAction="#BotonInicioSesion" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+</GridPane>
