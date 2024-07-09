@@ -53,7 +53,7 @@ public class ReporteCController {
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                // Censurar el número de tarjeta dejando solo los últimos 4 dígitos
+
                 String numTarjeta = rs.getString("num_tarjeta");
                 String numTarjetaCensurado = "**** **** **** " + numTarjeta.substring(numTarjeta.length() - 4);
                 tarjetas.add(numTarjetaCensurado);
@@ -76,7 +76,7 @@ public class ReporteCController {
             tarjetasCredito.setText(tarjetasCreditoList.isEmpty() ? "N/A" : String.join(", ", tarjetasCreditoList));
             tarjetasDebito.setText(tarjetasDebitoList.isEmpty() ? "N/A" : String.join(", ", tarjetasDebitoList));
 
-            // Guardar el informe en un archivo de texto
+
             guardarInformeEnArchivo(clienteId, tarjetasCreditoList, tarjetasDebitoList);
 
         } catch (NumberFormatException e) {
