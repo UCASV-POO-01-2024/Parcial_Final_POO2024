@@ -18,6 +18,15 @@ import java.util.Objects;
 
 public class LoginController { //00191223 Declara la clase LoginController que maneja la lógica del inicio de sesión y el registro de transacciones.
 
+    private Sistema sistema;
+
+    public LoginController() {
+    }
+
+    public LoginController(Sistema sistema) {
+        this.sistema = sistema;
+    }
+
     public GridPane gridPane;
 
     @FXML
@@ -95,13 +104,20 @@ public class LoginController { //00191223 Declara la clase LoginController que m
         };
 
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile))); //00191223 Carga el archivo FXML.
-            Stage stage = (Stage) campoDeNombre.getScene().getWindow(); //00191223 Obtiene la ventana actual.
-            stage.setScene(new Scene(root)); //00191223 Establece la nueva escena en la ventana.
-        } catch (IOException e) { //00191223 Si ocurre una excepción muestra un mensaje de error.
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "No se pudo cargar la pantalla de usuario."); //00191223 Mensaje que muestra el error
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+            Parent root = loader.load();
+
+            if (userType == UserType.ADMIN) {
+                AdminController adminController = loader.getController();
+                adminController.setSistema(sistema);
             }
+
+            Stage stage = (Stage) campoDeNombre.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "No se pudo cargar la pantalla de usuario.");
+        }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) { //00191223 Método para mostrar una alerta.
@@ -110,6 +126,10 @@ public class LoginController { //00191223 Declara la clase LoginController que m
         alert.setHeaderText(null); //00191223 Establece el encabezado de la alerta como null.
         alert.setContentText(message); //00191223 Establece el contenido de la alerta.
         alert.showAndWait(); //00191223 Muestra la alerta y espera a que el usuario la cierre.
+    }
+
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
     }
 
     private enum UserType { //00191223 Define un enumerador para los tipos de usuario.
