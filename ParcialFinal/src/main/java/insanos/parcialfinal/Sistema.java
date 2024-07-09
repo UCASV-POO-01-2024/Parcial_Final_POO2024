@@ -21,7 +21,7 @@ public class Sistema extends Application {
         mostrarLogin();
     }
 
-    private void mostrarLogin() throws IOException {
+    public void mostrarLogin() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/insanos/parcialfinal/Login.fxml"));
         Parent root = loader.load();
 
@@ -68,6 +68,15 @@ public class Sistema extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/insanos/parcialfinal/ReporteD.fxml"));
         Parent root = loader.load();
         ReporteDController controller = loader.getController();
+        controller.setSistema(this);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void mostrarAdminScreen() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/insanos/parcialfinal/AdminScreen.fxml"));
+        Parent root = loader.load();
+        AdminController controller = loader.getController();
         controller.setSistema(this);
         Scene scene = new Scene(root);
         stage.setScene(scene);

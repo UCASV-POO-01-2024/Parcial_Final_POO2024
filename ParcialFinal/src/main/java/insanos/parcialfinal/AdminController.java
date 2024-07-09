@@ -29,6 +29,8 @@ public class AdminController {
     private DatePicker fechaInicio;
     @FXML
     private DatePicker fechaFinal;
+    @FXML
+    private Button salir;
     private Sistema sistema;
 
     public AdminController() {
@@ -67,6 +69,13 @@ public class AdminController {
         ReporteD.setOnAction(e -> {
             try {
                 sistema.mostrarReporteD();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        salir.setOnAction(e -> {
+            try {
+                sistema.mostrarLogin();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

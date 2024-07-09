@@ -39,6 +39,8 @@ public class ReporteAController {
     @FXML
     private Button mostrarReporteA;
     @FXML
+    private Button volver;
+    @FXML
     private TableView<Transaccion> TablaConsultaA;
     @FXML
     private TableColumn<Transaccion, Integer> colId;
@@ -61,6 +63,13 @@ public class ReporteAController {
                 MostrarReporteA();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        });
+        volver.setOnAction(e->{
+            try {
+                sistema.mostrarAdminScreen();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
     }
@@ -113,7 +122,7 @@ public class ReporteAController {
         ObservableList<Transaccion> transaccionesData = FXCollections.observableArrayList(transacciones);
         TablaConsultaA.setItems(transaccionesData);
 
-        
+
         guardarInformeEnArchivo(transacciones);
     }
 

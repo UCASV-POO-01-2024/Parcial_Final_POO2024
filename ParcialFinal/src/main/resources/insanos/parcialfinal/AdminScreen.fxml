@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="insanos.parcialfinal.AdminController">
+    <VBox alignment="TOP_CENTER" prefHeight="179.0" prefWidth="220.0">
+        <Label alignment="CENTER" prefHeight="37.0" prefWidth="158.0" text="Bienvenido Administrador" />
+        <Button fx:id="ReporteA" text="Reporte A" />
+        <Button fx:id="ReporteB" text="Reporte B" />
+        <Button fx:id="ReporteC" text="Reporte C" />
+        <Button fx:id="ReporteD" text="Reporte D" />
+      <Button fx:id="salir" layoutX="85.0" layoutY="123.0" text="Cerrar sesion" />
+
+
+    </VBox>
+
+
+</StackPane>

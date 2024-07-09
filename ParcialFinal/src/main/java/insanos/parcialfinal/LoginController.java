@@ -1,20 +1,33 @@
 package insanos.parcialfinal;
-import java.time.format.DateTimeFormatter;
-import java.util.Objects;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import javafx.stage.Stage;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
+public class LoginController { //00191223 Declara la clase LoginController que maneja la lógica del inicio de sesión y el registro de transacciones.
 
-public class LoginController { //00191223  Se define la clase LoginController que maneja la lógica del inicio de sesión y el registro de transacciones.
+    private Sistema sistema;
+
+    public LoginController() {
+    }
+
+    public LoginController(Sistema sistema) {
+        this.sistema = sistema;
+    }
+
+    public GridPane gridPane;
 
     @FXML
     private TextField campoDeNombre; //00191223 Campo de texto para el nombre de usuario.
@@ -32,21 +45,7 @@ public class LoginController { //00191223  Se define la clase LoginController qu
     private TextField campoDeDescripcionTransaccion; //00191223 Campo de texto para la descripción de la transacción.
 
     @FXML
-    private TextField campoDeIDTransaccion;//00191223 Campo de texto para el ID de la tarjeta utilizada en la transacción.
-
-    private Sistema sistema;
-
-    public LoginController() {
-    }
-
-    public LoginController(Sistema sistema) {
-        this.sistema = sistema;
-    }
-
-    // Añadir este método
-    public void setSistema(Sistema sistema) {
-        this.sistema = sistema;
-    }
+    private TextField campoDeIDTransaccion; //00191223 Campo de texto para el ID de la tarjeta utilizada en la transacción.
 
     @FXML
     private void BotonInicioSesion() { //00191223 Método que maneja la acción del botón de inicio de sesión.
@@ -57,7 +56,8 @@ public class LoginController { //00191223  Se define la clase LoginController qu
         if (userType != null) { //00191223 Revisa que el campo del usuario no este vacio
             showAlert(Alert.AlertType.INFORMATION, "Login Exitoso", "Bienvenido " + username); //00191223 si el inicio es correcto muestra una pantallita de login exitoso
             CargarPantalla(userType); //00191223 Dependiendo que usaurio reciba muestra la pantalla necesaria
-        } else {showAlert(Alert.AlertType.ERROR, "Login Fallido", "Usuario o contraseña incorrectos"); //00191223 Si la autenticación falla muestra un mensaje de error
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Login Fallido", "Usuario o contraseña incorrectos"); //00191223 Si la autenticación falla muestra un mensaje de error
         }
     }
 
@@ -72,14 +72,28 @@ public class LoginController { //00191223  Se define la clase LoginController qu
         try { //00191223 Intenta registrar la transacción.
             Transacciones.registerTransaction(nombre, precio, descripcion, idTarjeta, fecha); //00191223 le pasa los atributos para la transaccion
             showAlert(Alert.AlertType.INFORMATION, "Registro Exitoso", "La transacción ha sido registrada con éxito.");  //00191223 Pantallitaque muestra un mensaje de exito
-        } catch (SQLException e) {e.printStackTrace();  //00191223 Si ocurre una excepción SQL, muestra un mensaje de error.
+            LimpiarCasillas(); //00191223 llamada a la funcion para limpiar las casillas
+        } catch (SQLException e) { e.printStackTrace();  //00191223 Si ocurre una excepción SQL, muestra un mensaje de error.
             showAlert(Alert.AlertType.ERROR, "Error", "No se pudo registrar la transacción."); //00191223 Pantallita de error si falla
+        }
+    }
+    @FXML
+    private void BotonCerrarSesion() { //00191223 Funcion para el boton de cerrar sesion de ambos usuarios
+        try { //00191223 Intenta abrir de nuevo la pantalla de login
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml"))); //00191223 Carga el fxml de login
+            Stage stage = (Stage) campoDeNombreTransaccion.getScene().getWindow(); //00191223 Obtiene la ventana actual donde está ubicado el botón de cerrar sesión
+            setSistema(sistema);
+            stage.setScene(new Scene(root)); //00191223 Establece la nueva escena de login
+        } catch (IOException e) {e.printStackTrace();  //00191223 Manejo de excepciones en caso de que ocurra un error al cargar el FXML
+            showAlert(Alert.AlertType.ERROR, "Error", "No se pudo cargar la pantalla de inicio de sesión."); //00191223 Mensaje que tira en caso de error
         }
     }
 
     private UserType Auntenticador(String username, String password) { //00191223 Método para autenticar al usuario.
-        if ("admin".equals(username) && "1234".equals(password)) { return UserType.ADMIN; //00191223 Si el nombre de usuario y la contraseña son correctos para el admin
-        } else if ("cliente".equals(username) && "12345".equals(password)) { return UserType.CLIENTE;//00191223 Si el nombre de usuario y la contraseña son correctos para el cliente
+        if ("admin".equals(username) && "1234".equals(password)) {
+            return UserType.ADMIN; //00191223 Si el nombre de usuario y la contraseña son correctos para el admin
+        } else if ("cliente".equals(username) && "12345".equals(password)) {
+            return UserType.CLIENTE;//00191223 Si el nombre de usuario y la contraseña son correctos para el cliente
         }
         return null; //00191223 Si no coinciden
     }
@@ -115,8 +129,21 @@ public class LoginController { //00191223  Se define la clase LoginController qu
         alert.showAndWait(); //00191223 Muestra la alerta y espera a que el usuario la cierre.
     }
 
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
+    }
+
     private enum UserType { //00191223 Define un enumerador para los tipos de usuario.
         ADMIN, //00191223 Tipo de usuario administrador.
         CLIENTE //00191223 Tipo de usuario cliente.
     }
+
+    private void LimpiarCasillas() { //00191223 Método para limpiar los campos de texto de la transacción.
+        campoDeNombreTransaccion.setText("");//00191223 Limpia el campo de texto del nombre de la transacción.
+        campoDePrecioTransaccion.setText("");//00191223 Limpia el campo de texto del precio de la transacción.
+        campoDeDescripcionTransaccion.setText("");//00191223 Limpia el campo de texto de la descripción de la transacción.
+        campoDeIDTransaccion.setText("");//00191223 Limpia el campo de texto del ID de la tarjeta.
+    }
+
+
 }

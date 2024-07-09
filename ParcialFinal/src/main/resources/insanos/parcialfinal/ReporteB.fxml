@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="insanos.parcialfinal.ReporteBController">
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+    <hgap>10</hgap>
+    <vgap>10</vgap>
+
+    <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <TextField fx:id="idCliente" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+    <Label text="Mes:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="mes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <Label text="Año:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="año" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <Button fx:id="mostrarReporteB" text="Mostrar Reporte B" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+
+    <Label text="Total Gastado:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label fx:id="totalGastado" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   <Button mnemonicParsing="false" fx:id="volver" prefHeight="25.0" prefWidth="70.0" text="Volver" GridPane.rowIndex="3" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+
+
+</GridPane>

@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="144.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="insanos.parcialfinal.ReporteAController">
+<VBox prefHeight="280.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="insanos.parcialfinal.ReporteAController">
     <children>
         <HBox prefHeight="0.0" prefWidth="335.0">
             <children>
-                <Label prefHeight="24.0" prefWidth="68.0" text="Id del cliente" />
-                <TextField fx:id="idCliente" prefHeight="25.0" prefWidth="164.0" />
+                <Label prefHeight="24.0" prefWidth="110.0" text="Id del cliente:" textAlignment="CENTER">
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding></Label>
+                <TextField fx:id="idCliente" prefHeight="25.0" prefWidth="57.0" />
             </children>
         </HBox>
-        <Label text="Rango de  fecha" />
+        <Label prefHeight="17.0" prefWidth="114.0" text="Rango de  fecha:" />
         <SplitPane dividerPositions="0.5" prefHeight="28.0" prefWidth="302.0">
             <items>
                 <Label prefHeight="17.0" prefWidth="54.0" text="Desde" />
@@ -24,7 +28,12 @@
                 <DatePicker fx:id="fechaFinal" />
             </items>
         </SplitPane>
-        <Button fx:id="mostrarReporteA" text="Reporte A" />
+      <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0">
+         <items>
+              <Button fx:id="mostrarReporteA" text="Mostrar Resultados" />
+            <Button fx:id="volver" layoutX="10.0" layoutY="10.0" text="Volver" />
+         </items>
+      </SplitPane>
         <TableView fx:id="TablaConsultaA">
             <columns>
                 <TableColumn fx:id="colId" text="ID" />

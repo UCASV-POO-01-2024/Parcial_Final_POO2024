@@ -28,6 +28,8 @@ public class ReporteCController {
     private Label tarjetasCredito;
     @FXML
     private Label tarjetasDebito;
+    @FXML
+    private Button volver;
     private Sistema sistema;
 
     @FXML
@@ -37,6 +39,13 @@ public class ReporteCController {
                 MostrarTarjetas();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        });
+        volver.setOnAction(e->{
+            try {
+                sistema.mostrarAdminScreen();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
     }
