@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="144.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="insanos.parcialfinal.ReporteAController">
+    <children>
+        <HBox prefHeight="0.0" prefWidth="335.0">
+            <children>
+                <Label prefHeight="24.0" prefWidth="68.0" text="Id del cliente" />
+                <TextField fx:id="idCliente" prefHeight="25.0" prefWidth="164.0" />
+            </children>
+        </HBox>
+        <Label text="Rango de  fecha" />
+        <SplitPane dividerPositions="0.5" prefHeight="28.0" prefWidth="302.0">
+            <items>
+                <Label prefHeight="17.0" prefWidth="54.0" text="Desde" />
+                <DatePicker fx:id="fechaInicio" />
+            </items>
+        </SplitPane>
+        <SplitPane dividerPositions="0.5" prefHeight="31.0" prefWidth="302.0">
+            <items>
+                <Label prefHeight="17.0" prefWidth="54.0" text="Hasta" />
+                <DatePicker fx:id="fechaFinal" />
+            </items>
+        </SplitPane>
+        <Button fx:id="mostrarReporteA" text="Reporte A" />
+        <TableView fx:id="TablaConsultaA">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" />
+                <TableColumn fx:id="colFecha" text="Fecha" />
+                <TableColumn fx:id="colMonto" text="Monto" />
+                <TableColumn fx:id="colDescripcion" text="Descripción" />
+            </columns>
+        </TableView>
+    </children>
+</VBox>
