@@ -1,3 +1,0 @@
-ID Cliente: 1
-Tarjetas de Crédito: **** **** **** 5678
-Tarjetas de Débito: N/A
