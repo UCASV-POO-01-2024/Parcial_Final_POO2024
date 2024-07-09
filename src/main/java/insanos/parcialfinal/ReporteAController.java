@@ -12,6 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -21,11 +24,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReporteAController {
-private Sistema sistema;
+    private Sistema sistema;
     @FXML
     private TextField idCliente;
     @FXML
@@ -47,12 +51,10 @@ private Sistema sistema;
 
     @FXML
     public void initialize() {
-
         colId.setCellValueFactory(new PropertyValueFactory<>("IDtransaccion"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colMonto.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
         colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-
 
         mostrarReporteA.setOnAction(event -> {
             try {
@@ -92,12 +94,10 @@ private Sistema sistema;
                             rs.getTimestamp("fecha").toLocalDateTime(),
                             rs.getBigDecimal("precio"),
                             rs.getString("descripcion"),
-
                             null
                     );
                     transacciones.add(transaccion);
                 }
-
             } catch (SQLException e) {
                 throw new RuntimeException("Error al ejecutar la consulta: " + e.getMessage(), e);
             }
@@ -112,6 +112,32 @@ private Sistema sistema;
         List<Transaccion> transacciones = CrearReporteA();
         ObservableList<Transaccion> transaccionesData = FXCollections.observableArrayList(transacciones);
         TablaConsultaA.setItems(transaccionesData);
+
+        // Guardar el informe en un archivo de texto
+        guardarInformeEnArchivo(transacciones);
+    }
+
+    private void guardarInformeEnArchivo(List<Transaccion> transacciones) {
+        File directorio = new File("Reportes");
+        if (!directorio.exists()) {
+            directorio.mkdir();
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        String timestamp = LocalDateTime.now().format(formatter);
+        File archivo = new File(directorio, "reporte A" + timestamp + ".txt");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            for (Transaccion transaccion : transacciones) {
+                writer.write("ID: " + transaccion.getIDtransaccion() + ", ");
+                writer.write("Fecha: " + transaccion.getFecha() + ", ");
+                writer.write("Monto: " + transaccion.getCantidad() + ", ");
+                writer.write("Descripcion: " + transaccion.getDescripcion());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setSistema(Sistema sistema) {

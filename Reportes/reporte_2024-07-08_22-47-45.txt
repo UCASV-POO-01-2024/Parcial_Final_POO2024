@@ -1,0 +1,7 @@
+ID: 6, Fecha: 2024-05-05T10:30, Monto: 75.50, Descripcion: Compra mensual de alimentos en supermercado
+ID: 11, Fecha: 2024-05-05T10:30, Monto: 75.50, Descripcion: Compra mensual de alimentos en supermercado
+ID: 12, Fecha: 2024-05-12T15:45, Monto: 50.25, Descripcion: Llenado de tanque de gasolina
+ID: 13, Fecha: 2024-05-18T09:00, Monto: 120.75, Descripcion: Compra de ropa en tienda en línea
+ID: 14, Fecha: 2024-05-25T20:00, Monto: 85.20, Descripcion: Cena en restaurante con amigos
+ID: 15, Fecha: 2024-06-01T12:00, Monto: 110.00, Descripcion: Pago mensual de servicios públicos
+ID: 1, Fecha: 2024-07-08T14:30, Monto: 120.50, Descripcion: Artículos de electrónica

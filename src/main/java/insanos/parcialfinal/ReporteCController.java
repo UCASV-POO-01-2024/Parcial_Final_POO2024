@@ -5,11 +5,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,8 +76,33 @@ public class ReporteCController {
             tarjetasCredito.setText(tarjetasCreditoList.isEmpty() ? "N/A" : String.join(", ", tarjetasCreditoList));
             tarjetasDebito.setText(tarjetasDebitoList.isEmpty() ? "N/A" : String.join(", ", tarjetasDebitoList));
 
+            // Guardar el informe en un archivo de texto
+            guardarInformeEnArchivo(clienteId, tarjetasCreditoList, tarjetasDebitoList);
+
         } catch (NumberFormatException e) {
             System.err.println("El ID del cliente no es válido: " + idCliente.getText());
+        }
+    }
+
+    private void guardarInformeEnArchivo(int clienteId, List<String> tarjetasCredito, List<String> tarjetasDebito) {
+        File directorio = new File("Reportes");
+        if (!directorio.exists()) {
+            directorio.mkdir();
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        String timestamp = LocalDateTime.now().format(formatter);
+        File archivo = new File(directorio, "Reporte C" + timestamp + ".txt");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            writer.write("ID Cliente: " + clienteId);
+            writer.newLine();
+            writer.write("Tarjetas de Crédito: " + (tarjetasCredito.isEmpty() ? "N/A" : String.join(", ", tarjetasCredito)));
+            writer.newLine();
+            writer.write("Tarjetas de Débito: " + (tarjetasDebito.isEmpty() ? "N/A" : String.join(", ", tarjetasDebito)));
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
