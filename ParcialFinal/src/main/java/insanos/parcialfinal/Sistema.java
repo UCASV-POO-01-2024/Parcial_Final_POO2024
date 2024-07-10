@@ -64,7 +64,7 @@ public class Sistema extends Application {
         stage.show();
     }
 
-    public void mostrarReporteD() throws IOException {
+     public void mostrarReporteD() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/insanos/parcialfinal/ReporteD.fxml"));
         Parent root = loader.load();
         ReporteDController controller = loader.getController();
@@ -73,7 +73,6 @@ public class Sistema extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
     public void setStage(Stage stage) {
         this.stage = stage;
     }
