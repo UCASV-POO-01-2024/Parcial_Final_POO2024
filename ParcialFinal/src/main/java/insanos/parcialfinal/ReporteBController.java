@@ -29,7 +29,9 @@ public class ReporteBController { //00099022 Declara la clase controladora para 
     @FXML
     private Button mostrarReporteB; //00099022 Boton para mostrar el reporte
     @FXML
-    private Label totalGastado; //00099022 Etiqueta para mostrar el total gastado
+    private Label totalGastado;//00099022 Etiqueta para mostrar el total gastado
+    @FXML
+    private Button volver;
 
     @FXML
     public void initialize() { //00099022 Metodo que se ejecuta al inicializar el controlador
@@ -38,6 +40,13 @@ public class ReporteBController { //00099022 Declara la clase controladora para 
                 MostrarReporteB(); //00099022 Llama al metodo para mostrar el reporte
             } catch (IOException e) { //00099022 Captura y maneja excepciones de entrada/salida
                 e.printStackTrace(); //00099022 Imprime el seguimiento de la pila de errores
+            }
+        });
+        volver.setOnAction(e->{
+            try {
+                sistema.mostrarAdminScreen();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
     }

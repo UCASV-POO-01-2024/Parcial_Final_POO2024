@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -131,6 +132,13 @@ public class ReporteDController {
 
         public double getTotalGastado() {
             return totalGastado;
+        }
+    }
+    public void Volver(){
+        try {
+            sistema.mostrarAdminScreen();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

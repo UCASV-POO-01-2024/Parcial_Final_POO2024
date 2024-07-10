@@ -3,19 +3,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="insanos.parcialfinal.ReporteDController">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="insanos.parcialfinal.ReporteDController">
 
-    <TextField fx:id="txtFacilitador" promptText="Ingrese facilitador de tarjeta"/>
-    <Button text="Mostrar" onAction="#Mostrar"/>
+    <TextField fx:id="txtFacilitador" promptText="Ingrese facilitador de tarjeta" />
+   <HBox prefHeight="25.0" prefWidth="403.0">
+      <children>
+         <HBox prefHeight="25.0" prefWidth="67.0">
+            <children>
+               <Button onAction="#Mostrar" text="Mostrar" />
+            </children>
+         </HBox>
+          <Button onAction="#Volver" text="Volver" />
+      </children>
+   </HBox>
 
     <TableView fx:id="tableViewClientes">
         <columns>
-            <TableColumn fx:id="colId" text="ID Cliente"/>
-            <TableColumn fx:id="colNombre" text="Nombre"/>
-            <TableColumn fx:id="colApellido" text="Apellido"/>
-            <TableColumn fx:id="colCantidadCompras" text="Cantidad de Compras"/>
-            <TableColumn fx:id="colTotalGastado" text="Total Gastado"/>
+            <TableColumn fx:id="colId" text="ID Cliente" />
+            <TableColumn fx:id="colNombre" text="Nombre" />
+            <TableColumn fx:id="colApellido" text="Apellido" />
+            <TableColumn fx:id="colCantidadCompras" text="Cantidad de Compras" />
+            <TableColumn fx:id="colTotalGastado" text="Total Gastado" />
         </columns>
     </TableView>
 </VBox>
