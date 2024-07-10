@@ -145,7 +145,7 @@ public class ReporteDController {
     }
     public void Volver(){
         try {
-            sistema.mostrarAdminScreen();
+            sistema.mostrarAdminScreen(); //Funcion para volver a la pantalla de Admin
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
