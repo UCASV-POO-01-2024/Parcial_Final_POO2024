@@ -1,0 +1,3 @@
+Facilitador de Tarjeta: Visa
+Cliente: Juan, Compras: 7, Total Gastado: $637.70
+Cliente: Ana, Compras: 2, Total Gastado: $285.20

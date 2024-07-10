@@ -1,0 +1,3 @@
+Facilitador de Tarjeta: Mastercard
+Cliente: María, Compras: 3, Total Gastado: $224.50
+Cliente: Carlos, Compras: 2, Total Gastado: $410.75

@@ -33,7 +33,6 @@ public class Sistema extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
     public void mostrarReporteA() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/insanos/parcialfinal/ReporteA.fxml"));
         Parent root = loader.load();
